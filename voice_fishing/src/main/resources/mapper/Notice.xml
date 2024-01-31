@@ -1,0 +1,134 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="kr.co.fishing.dao.NoticeDAO">
+
+	<!--  새글 등록 -->
+	<insert id="insertNotice" parameterType="NoticeVO">
+		INSERT INTO 
+		NOTICE(
+			nNUM,
+			nTITLE, 
+			nSUBTITLE,
+			nCNT, 
+			nCOMMENT 
+			 <if test="nNAME != null or nMAINNAME != null">
+				<!-- 사진 파일이 업로드 되었을때 -->
+				, nNAME , nREALNAME, nNSIZE, nMAINNAME, nMAINREALNAME, nMAINNSIZE
+			  </if>
+			,nDATE
+			,nTAG1
+			,nTAG2
+			,nTAG3
+				)
+		VALUES(
+			   nextval(howstudy.nNUM),
+			   #{nTITLE}, 
+			   #{nSUBTITLE},
+			   0,
+			   #{nCOMMENT}
+			   <if test="nNAME != null or nMAINNAME != null">
+	            ,#{nNAME},#{nREALNAME},#{nNSIZE},#{nMAINNAME},#{nMAINREALNAME},#{nMAINNSIZE}
+	            </if>
+			   ,NOW()
+			   ,#{nTAG1}
+			   ,#{nTAG2}
+			   ,#{nTAG3}
+			   )
+	</insert>
+	
+	
+	<select id="selectAllNotice" resultType="NoticeVO">
+			SELECT nNUM,nTITLE,nSUBTITLE,nDATE,nNAME,nREALNAME,nNSIZE,nCNT
+			FROM NOTICE
+			ORDER BY nNUM DESC
+	</select>
+	
+	<select id="selectFiveNotice" resultType="NoticeVO">
+			SELECT nNUM,nTITLE,nSUBTITLE,nDATE,nNAME,nREALNAME,nNSIZE,nCNT
+			FROM NOTICE
+			ORDER BY nNUM DESC
+			LIMIT 6
+	</select>
+	
+		 <!-- 글 세부 조회 --> 
+	 <select id="seleteNoticeBoard" resultType="NoticeVO">
+        SELECT 
+        	nNUM,
+			nTITLE, 
+			nSUBTITLE,
+			nCNT, 
+			nCOMMENT,
+			nNAME, 
+			nREALNAME, 
+			nNSIZE, 
+			nMAINNAME, 
+			nMAINREALNAME, 
+			nMAINNSIZE,
+			nDATE,
+			nTAG1,
+			nTAG2,
+			nTAG3
+			FROM NOTICE
+			WHERE nNUM = #{nNUM}
+    </select> 
+    
+    <update id="updateNoticeBoard" parameterType="NoticeVO">
+	        update NOTICE set
+	            nTITLE = #{nTITLE}
+	            , nSUBTITLE = #{nSUBTITLE}
+	            , nCOMMENT = #{nCOMMENT}
+	           <if test="nNAME != null or nMAINNAME != null">
+				, nNAME = #{nNAME}
+				, nREALNAME = #{nREALNAME}
+				, nNSIZE = #{nNSIZE}
+				, nMAINNAME = #{nMAINNAME}
+				, nMAINREALNAME = #{nMAINREALNAME}
+				, nMAINNSIZE = #{nMAINNSIZE}
+			  </if>
+	            , nTAG1 = #{nTAG1}
+	            , nTAG2 = #{nTAG2}
+	            , nTAG3 = #{nTAG3}
+	        where
+	            nNUM = #{nNUM}
+	 </update> 
+	 
+	 <!-- 글 삭제 -->    
+    <delete id="deleteNoticeBoard" parameterType="NoticeVO">
+		DELETE FROM NOTICE
+		WHERE nNUM = #{nNUM}
+	</delete>
+	
+	 <!-- 다음 게시글 불러오기 --> 
+	 <select id="seleteNoticeNext" resultType="NoticeVO">
+        SELECT 
+        	nNUM,
+			nTITLE, 
+			nSUBTITLE,
+			nDATE
+			FROM NOTICE
+			WHERE nNUM = #{nNUM}+1 OR nNUM = #{nNUM}+2
+    </select> 
+    
+    <!-- 조회수 증가 -->
+   <update id="hitsplus" parameterType="NoticeVO">
+      UPDATE NOTICE 
+      SET   nCNT = nCNT+1
+      WHERE nNUM = #{nNUM}
+   </update>
+   
+   <!-- 총 개수 가져오기 -->
+   <select id="selectCount" resultType="int">
+   SELECT COUNT(*)
+   FROM NOTICE;
+   </select>
+   
+   <!-- 관리자 페이징 가져오기 -->
+   <select id="listCount" resultType="int">
+   SELECT COUNT(*)
+   FROM NOTICE;
+   </select>
+
+	
+
+</mapper>
