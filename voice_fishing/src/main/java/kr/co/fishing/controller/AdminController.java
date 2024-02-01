@@ -1,37 +1,33 @@
 package kr.co.fishing.controller;
 
-import java.util.Iterator;
-import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 
-import jakarta.servlet.http.HttpSession;
-import kr.co.fishing.service.FaqService;
-import kr.co.fishing.service.NoticeService;
+import kr.co.fishing.service.FaqServiceImpl;
+import kr.co.fishing.service.NoticeServiceImpl;
 import kr.co.fishing.vo.FaqVO;
 import kr.co.fishing.vo.NoticeVO;
 
 @Controller
-@RequestMapping("/pages")
+//@RequestMapping("/pages")
 public class AdminController {
 
 	@Autowired
-	private FaqService faqService;
+	private FaqServiceImpl faqService;
 
 
 	@Autowired
-	private NoticeService noticeService;
+	private NoticeServiceImpl noticeService;
 
 	
 
 	//화면만
-	@RequestMapping("/{step}")
+//	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
 		return "pages/" + step;
 	}

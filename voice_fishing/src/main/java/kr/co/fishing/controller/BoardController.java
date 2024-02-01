@@ -11,7 +11,7 @@ import kr.co.fishing.vo.NoticeVO;
 
 
 @Controller
-@RequestMapping("/board")
+//@RequestMapping("/board")
 public class BoardController {
 
 
@@ -20,7 +20,7 @@ public class BoardController {
 	private NoticeService noticeService;
 	
 	//화면만 띄우는 것
-	@RequestMapping("/{step}")
+//	@RequestMapping("/{step}")
 	public String viewPage(@PathVariable String step) {
 		return "board/" + step;
 	}

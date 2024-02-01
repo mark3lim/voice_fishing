@@ -5,11 +5,13 @@ package kr.co.fishing.dao;
 import java.util.List;
 
 import org.apache.ibatis.annotations.Mapper;
+import org.springframework.stereotype.Repository;
 
 import kr.co.fishing.vo.FaqVO;
 
 
 @Mapper
+@Repository
 public interface FaqDAO {
 
 	// 게시물 등록

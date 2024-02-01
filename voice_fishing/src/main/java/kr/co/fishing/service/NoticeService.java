@@ -2,8 +2,8 @@ package kr.co.fishing.service;
 
 import java.util.List;
 
-import kr.co.fishing.vo.NoticeVO;
 
+import kr.co.fishing.vo.NoticeVO;
 
 public interface NoticeService {
 

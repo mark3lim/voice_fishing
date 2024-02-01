@@ -1,5 +1,6 @@
 package kr.co.fishing.service;
 
-public class ImageService {
+
+public interface ImageService {
 
 }

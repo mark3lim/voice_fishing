@@ -1,10 +1,10 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
-"https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="kr.co.fishing.dao.NoticeDAO">
 
 	<!--  새글 등록 -->
-	<insert id="insertNotice" parameterType="NoticeVO">
+	<insert id="insertNotice" parameterType="kr.co.fishing.vo.NoticeVO">
 		INSERT INTO 
 		NOTICE(
 			nNUM,
@@ -38,13 +38,13 @@
 	</insert>
 	
 	
-	<select id="selectAllNotice" resultType="NoticeVO">
+	<select id="selectAllNotice" resultType="kr.co.fishing.vo.NoticeVO">
 			SELECT nNUM,nTITLE,nSUBTITLE,nDATE,nNAME,nREALNAME,nNSIZE,nCNT
 			FROM NOTICE
 			ORDER BY nNUM DESC
 	</select>
 	
-	<select id="selectFiveNotice" resultType="NoticeVO">
+	<select id="selectFiveNotice" resultType="kr.co.fishing.vo.NoticeVO">
 			SELECT nNUM,nTITLE,nSUBTITLE,nDATE,nNAME,nREALNAME,nNSIZE,nCNT
 			FROM NOTICE
 			ORDER BY nNUM DESC
@@ -52,7 +52,7 @@
 	</select>
 	
 		 <!-- 글 세부 조회 --> 
-	 <select id="seleteNoticeBoard" resultType="NoticeVO">
+	 <select id="seleteNoticeBoard" resultType="kr.co.fishing.vo.NoticeVO">
         SELECT 
         	nNUM,
 			nTITLE, 
@@ -73,7 +73,7 @@
 			WHERE nNUM = #{nNUM}
     </select> 
     
-    <update id="updateNoticeBoard" parameterType="NoticeVO">
+    <update id="updateNoticeBoard" parameterType="kr.co.fishing.vo.NoticeVO">
 	        update NOTICE set
 	            nTITLE = #{nTITLE}
 	            , nSUBTITLE = #{nSUBTITLE}
@@ -94,13 +94,13 @@
 	 </update> 
 	 
 	 <!-- 글 삭제 -->    
-    <delete id="deleteNoticeBoard" parameterType="NoticeVO">
+    <delete id="deleteNoticeBoard" parameterType="kr.co.fishing.vo.NoticeVO">
 		DELETE FROM NOTICE
 		WHERE nNUM = #{nNUM}
 	</delete>
 	
 	 <!-- 다음 게시글 불러오기 --> 
-	 <select id="seleteNoticeNext" resultType="NoticeVO">
+	 <select id="seleteNoticeNext" resultType="kr.co.fishing.vo.NoticeVO">
         SELECT 
         	nNUM,
 			nTITLE, 
@@ -111,7 +111,7 @@
     </select> 
     
     <!-- 조회수 증가 -->
-   <update id="hitsplus" parameterType="NoticeVO">
+   <update id="hitsplus" parameterType="kr.co.fishing.vo.NoticeVO">
       UPDATE NOTICE 
       SET   nCNT = nCNT+1
       WHERE nNUM = #{nNUM}
