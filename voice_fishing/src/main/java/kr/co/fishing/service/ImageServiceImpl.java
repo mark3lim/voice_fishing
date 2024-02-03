@@ -43,7 +43,7 @@ public class ImageServiceImpl implements ImageService {
 		List<ImageDomain> list = iDAO.selectAll();
 		//data:image/png;base64,
 		for(ImageDomain domain : list) {
-			domain.setBase64Photo("data:image/png;base64"+Base64.encodeBase64String(domain.getPhotoInfo()));
+			domain.setBase64Photo("data:image/png;base64,"+Base64.encodeBase64String(domain.getPhotoInfo()));
 		}
 		
 		return list;
