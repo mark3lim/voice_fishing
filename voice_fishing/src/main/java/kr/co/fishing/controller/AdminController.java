@@ -6,7 +6,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
-
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import kr.co.fishing.service.FaqServiceImpl;
 import kr.co.fishing.service.NoticeServiceImpl;
@@ -24,7 +24,10 @@ public class AdminController {
 	@Autowired
 	private NoticeServiceImpl noticeService;
 
-	
+	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+	public String homePage() {
+		return "redirect:http://localhost/index.html";
+	}
 
 	//화면만
 //	@RequestMapping("/{step}")

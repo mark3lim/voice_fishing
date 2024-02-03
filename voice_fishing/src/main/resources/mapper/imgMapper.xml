@@ -1,0 +1,15 @@
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="kr.co.fishing.dao.ImageDAO">
+<!-- insert image info -->
+<insert id="insertImg" parameterType="kr.co.fishing.vo.ImageVO">
+INSERT INTO IMAGE (POST_ID, IMAGE_NAME, PHOTO_INFO)
+VALUES(#{postId}, #{imageName}, #{photoInfo})
+</insert>
+
+<!-- select All recode from IMAGE table -->
+<select id="selectAll" resultType="kr.co.fishing.domain.ImageDomain">
+SELECT POST_ID, IMAGE_NAME, PHOTO_INFO
+FROM IMAGE
+</select>
+</mapper>

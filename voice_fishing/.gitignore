@@ -97,3 +97,10 @@ buildNumber.properties
 
 application.properties
 logback-spring.xml
+Wallet_G0U5MMWQBIQWBBI6/
+Wallet_G0U5MMWQBIQWBBI6/*.ora
+Wallet_G0U5MMWQBIQWBBI6/*.jks
+Wallet_G0U5MMWQBIQWBBI6/*.sso
+Wallet_G0U5MMWQBIQWBBI6/*.p12
+Wallet_G0U5MMWQBIQWBBI6/*.pem
+Wallet_G0U5MMWQBIQWBBI6/ojdbc.properties
