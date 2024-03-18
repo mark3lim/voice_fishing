@@ -1,9 +1,10 @@
-package kr.co.fishing.service;
+package kr.co.fishing.service.impl;
 
 
 
 import java.util.List;
 
+import kr.co.fishing.service.FaqService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -12,7 +13,7 @@ import kr.co.fishing.vo.FaqVO;
 
 
 @Service
-public class FaqServiceImpl implements FaqService  {
+public class FaqServiceImpl implements FaqService {
 	
 	@Autowired
 	private FaqDAO faqDAO;	
