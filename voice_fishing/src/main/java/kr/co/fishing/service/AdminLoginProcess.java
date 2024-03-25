@@ -2,6 +2,7 @@ package kr.co.fishing.service;
 
 import kr.co.fishing.domain.AdminLoginDomain;
 import kr.co.fishing.vo.AdminLoginVO;
+import org.springframework.stereotype.Service;
 
 /**
  * 관리자 로그인 허용 여부를 확인하는 service class
@@ -9,6 +10,7 @@ import kr.co.fishing.vo.AdminLoginVO;
  * author   : marklim
  * date     : 3-16-2024
  */
+@Service
 public interface AdminLoginProcess {
 
     /**

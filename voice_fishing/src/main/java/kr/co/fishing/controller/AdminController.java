@@ -3,7 +3,7 @@ package kr.co.fishing.controller;
 
 import jakarta.servlet.http.HttpSession;
 import kr.co.fishing.domain.AdminLoginDomain;
-import kr.co.fishing.service.AdminLoginProcess;
+import kr.co.fishing.service.impl.AdminLoginProcessImpl;
 import kr.co.fishing.vo.AdminLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -27,8 +27,16 @@ public class AdminController {
 	@Autowired
 	private NoticeServiceImpl noticeService;
 	@Autowired
-	private AdminLoginProcess loginProcess;
+	private AdminLoginProcessImpl loginProcess;
 
+
+	/**
+	 * 관리자 로그인 화면
+	 */
+	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminPage() {
+		return "admin_login_form";
+	}
 
 	/**
 	 * 관리자 로그인 화면
@@ -114,7 +122,7 @@ public class AdminController {
 		m.addAttribute("noticeList", noticeService.selectAllNotice(noticevo));
 		return "redirect:../pages/notice";
 	}
-	
+
 
 
 	// Notice 수정
@@ -149,9 +157,9 @@ public class AdminController {
 
 
 
-	
 
 
-	
+
+
 
 }

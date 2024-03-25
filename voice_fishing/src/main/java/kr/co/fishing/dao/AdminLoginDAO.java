@@ -18,5 +18,5 @@ public interface AdminLoginDAO {
     /**
      * 로그인 정보와 일치하는 레코드가 있는 확인
      */
-    public AdminLoginDomain selectLoginUser(AdminLoginVO loginVO);
+    AdminLoginDomain selectLoginUser(AdminLoginVO loginVO);
 }

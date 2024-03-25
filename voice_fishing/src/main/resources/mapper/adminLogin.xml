@@ -2,15 +2,15 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="kr.co.fishing.dao.AdminLoginDAO">
     <!-- selectLoginUser Map setting -->
-    <resultMap id="AdminLoginDomain" type="kr.co.fishing.domain.AdminLoginDomain">
+    <resultMap id="AdminLoginDomain" type="AdminLoginDomain">
         <result column="USERNAME" property="id"/>
         <result column="GRANT" property="grant"/>
     </resultMap>
 
     <!-- Admin Login Info check and select id and grant of the user -->
-    <select id="selectLoginUser" resultType="AdminLoginDomain" parameterType="AdminLoginVO">
+    <select id="selectLoginUser" resultMap="AdminLoginDomain" parameterType="AdminLoginVO">
         SELECT USERNAME, 'GRANT'
         FROM ADMIN.ADMIN
-        WHERE USERNAME = #{id} AND PASSWORD = #{pass};
+        WHERE USERNAME = #{id} AND PASSWORD = #{pass}
     </select>
 </mapper>

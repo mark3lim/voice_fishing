@@ -1,3 +1,5 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <!--[if lt IE 7 ]> <html class="ie6"> <![endif]-->
 <!--[if IE 7 ]>    <html class="ie7"> <![endif]-->
@@ -12,30 +14,52 @@
     <meta name="author" content="">
 	<title>Bovile</title>
 
+	<%-- jQuery cdn --%>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
 	<!-- Standard Favicon -->
-	<link rel="icon" type="image/x-icon" href="images//favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="/images//favicon.ico" />
 	<!-- For iPhone 4 Retina display: -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images//apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images//apple-touch-icon-114x114-precomposed.png">
 	<!-- For iPad: -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images//apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images//apple-touch-icon-72x72-precomposed.png">
 	<!-- For iPhone: -->
-	<link rel="apple-touch-icon-precomposed" href="images//apple-touch-icon-57x57-precomposed.png">	
+	<link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-57x57-precomposed.png">
 	<!-- Library Css -->
-	<link rel="stylesheet" type="text/css" href="libraries/lib.css"> 
+	<link rel="stylesheet" type="text/css" href="/libraries/lib.css">
 	<!-- Font Icons -->
 	<!--link rel="stylesheet" type="text/css" href="libraries/fonts/open-iconic-bootstrap.min.css"-->
 
 	<!-- Custom - Common CSS -->
-	<link rel="stylesheet" type="text/css" href="css/plugins.css">
-	<link rel="stylesheet" type="text/css" href="css/navigation-menu.css">
+	<link rel="stylesheet" type="text/css" href="/css/plugins.css">
+	<link rel="stylesheet" type="text/css" href="/css/navigation-menu.css">
 	<!-- Custom - Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="css/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="/css/style.css">
+	<link rel="stylesheet" type="text/css" href="/css/shortcodes.css">
 	
 	<!--[if lt IE 9]>
-		<script src="js/html5/respond.min.js"></script>
+		<script src="/js/html5/respond.min.js"></script>
     <![endif]-->
 </head>
+<script type="application/javascript">
+	$(function() {
+	// 	로그인 버튼
+		$("#login_submit").click(function () {
+			let form = $("#login").serializeArray();
+			$.ajax({
+				url:"/skr/login_prc",
+				type:"POST",
+				data:form,
+				error: function (err) {
+					alert(err.status);
+				},
+				success: function (flag) {
+					alert("Flag :: "+flag);
+				}
+			});
+			// $("#login").submit();
+		});
+	});
+</script>
 <style>
 	/* 로그인 input 태그 스타일 설정*/
 	.login-input {
@@ -94,7 +118,7 @@
 					</ul>
 				</div>
 				<div class="col-md-4 col-sm-4 col-xs-12 logo-block">
-					<a href="index.html" title="Logo"><img src="images/logo.png" alt="Logo"></a>
+					<a href="index.html" title="Logo"><img src="/images/logo.png" alt="Logo"></a>
 				</div>
 			</div>
 		</div><!-- Container /- -->
@@ -127,28 +151,28 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="index.html" title="Home">Home</a></li>
-						<li><a href="2-about.html" title="About Us">About Us</a></li>
-						<li><a href="3-services.html" title="Services">Services</a></li>
+						<li><a href="../../2-about.html" title="About Us">About Us</a></li>
+						<li><a href="../../3-services.html" title="Services">Services</a></li>
 						<li class="dropdown">
 							<a href="#" title="Pages" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
 							<i class="ddl-switch fa fa-angle-down"></i>
 							<ul class="dropdown-menu">
-								<li><a href="4-gallery.html" title="Gallery">Gallery</a></li>
-								<li><a href="6-pricing.html" title="Pricing">Pricing</a></li>
-								<li><a href="7-faq.html" title="Faq">FAQ</a></li>
-								<li><a href="10-404.html" title="404">404</a></li>
+								<li><a href="../../4-gallery.html" title="Gallery">Gallery</a></li>
+								<li><a href="../../6-pricing.html" title="Pricing">Pricing</a></li>
+								<li><a href="../../7-faq.html" title="Faq">FAQ</a></li>
+								<li><a href="../../10-404.html" title="404">404</a></li>
 							</ul>
 						</li>
 						<li><a href="#" title="Our Team">Shop</a></li>
 						<li class="dropdown">
-							<a href="8-blog.html" title="Latest News" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Latest News</a>
+							<a href="../../8-blog.html" title="Latest News" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Latest News</a>
 							<i class="ddl-switch fa fa-angle-down"></i>
 							<ul class="dropdown-menu">
-								<li><a href="8-blog.html" title="Blog">Blog</a></li>
-								<li><a href="9-blog-post.html" title="Single Post">Single</a></li>
+								<li><a href="../../8-blog.html" title="Blog">Blog</a></li>
+								<li><a href="../../9-blog-post.html" title="Single Post">Single</a></li>
 							</ul>
 						</li>
-						<li class="active"><a href="11-contact-us.html" title="Contact Us">Contact Us</a></li>
+						<li class="active"><a href="../../11-contact-us.html" title="Contact Us">Contact Us</a></li>
 					</ul>
 				</div>
 			</nav><!-- Navigation -->
@@ -172,8 +196,8 @@
 			<div class="contact-form">
 				<div class="row">
 					<div class="form-group col-md-6">
-						<form id="login" name="frmLogin" method="POST">
-							<input type="text" name="userid" class="login-input form-control" id="userid" placeholder="아이디" required="">
+						<form id="login" name="login" method="POST">
+							<input type="text" name="id" class="login-input form-control" id="userid" placeholder="아이디" required="">
 							<input type="password" name="pass" class="login-input form-control" id="pass" placeholder="비밀번호" required="">
 						</form>
 					</div>
@@ -195,14 +219,14 @@
 			<!-- Footer Location Widget -->
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<aside class="ftr-widget location-widget">
-					<h3 class="widget-title"><i><img src="images/ftr-location.png" alt="Location"></i><span>Address</span></h3>
+					<h3 class="widget-title"><i><img src="/images/ftr-location.png" alt="Location"></i><span>Address</span></h3>
 					<p>09 Design Street, Downtown, Bovile, Victoria, Australia</p>
 				</aside>
 			</div><!-- Footer Location Widget /- -->
 			<!-- Footer Phone Widget -->
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<aside class="ftr-widget phone-widget">
-					<h3 class="widget-title"><i><img src="images/ftr-phone.png" alt="Location"></i><span>Call Us</span></h3>
+					<h3 class="widget-title"><i><img src="/images/ftr-phone.png" alt="Location"></i><span>Call Us</span></h3>
 					<p><a href="tel:+9112345678" title="+9112345678">Mobile : +91 123 456 78</a>
 						<a href="tel:+9112345688" title="+9112345688">Toll free : +91 123 456 88</a></p>
 				</aside>
@@ -210,7 +234,7 @@
 			<!-- Footer Mail Widget -->
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<aside class="ftr-widget mail-widget">
-					<h3 class="widget-title"><i><img src="images/ftr-email.png" alt="Location"></i><span>email us</span></h3>
+					<h3 class="widget-title"><i><img src="/images/ftr-email.png" alt="Location"></i><span>email us</span></h3>
 					<p><a href="mailto:info@ourdomain.com" title="Info@OurDomain.Com">Info@OurDomain.Com</a>
 						<a href="mailto:support@ourdomain.com" title="Support@OurDomain.Com">Support@OurDomain.Com</a></p>
 				</aside>
@@ -218,7 +242,7 @@
 			<!-- Footer Hours Widget -->
 			<div class="col-md-3 col-sm-6 col-xs-6">
 				<aside class="ftr-widget hours-widget">
-					<h3 class="widget-title"><i><img src="images/ftr-hours.png" alt="Location"></i><span>working hours</span></h3>
+					<h3 class="widget-title"><i><img src="/images/ftr-hours.png" alt="Location"></i><span>working hours</span></h3>
 					<p><span>Mon-Sat : 9:00 AM To 5:00 PM</span><span>Sun : 9:00 AM To 2:00 PM</span></p>
 				</aside>
 			</div><!-- Footer Hours Widget /- -->
