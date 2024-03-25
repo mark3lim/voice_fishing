@@ -37,6 +37,7 @@
 	<!-- Custom - Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="css/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="css/board.css">
 	
 	<!--[if lt IE 9]>
 		<script src="js/html5/respond.min.js"></script>
@@ -168,7 +169,74 @@
 				<div class="row">
 					<!-- Content Area -->
 					<div class="content-area content-area75 col-md-9 col-sm-8">
-						<article class="type-post blog-onecolumn format-image">
+
+		<!-- 게시판 추가 -->
+		
+		<section class="notice">
+			<div class="page-title">
+				  <div class="container">
+					  <h3></h3>
+				  </div>
+			  </div>
+		  
+			  <!-- board seach area -->
+			  <div id="board-search">
+				  <div class="container">
+					  <div class="search-window">
+						  <form action="">
+							  <div class="search-wrap">
+								  <label for="search" class="blind">공지사항 내용 검색</label>
+								  <input id="search" type="search" name="" placeholder="검색어를 입력해주세요." value="">
+								  <button type="submit" class="btn btn-dark">검색</button>
+							  </div>
+						  </form>
+					  </div>
+				  </div>
+			  </div>
+			 
+			<!-- board list area -->
+			  <div id="board-list">
+				  <div class="container">
+					  <table class="board-table">
+						  <thead>
+						  <tr>
+							  <th scope="col" class="th-num">번호</th>
+							  <th scope="col" class="th-title">제목</th>
+							  <th scope="col" class="th-date">등록일</th>
+						  </tr>
+						  </thead>
+						  <tbody>
+						  <tr>
+							  <td>3</td>
+							  <th>
+								<a href="#!">[공지사항] 개인정보 처리방침 변경안내처리방침</a>
+								<p>테스트</p>
+							  </th>
+							  <td>2017.07.13</td>
+						  </tr>
+		  
+						  <tr>
+							  <td>2</td>
+							  <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+							  <td>2017.06.15</td>
+						  </tr>
+		  
+						  <tr>
+							  <td>1</td>
+							  <th><a href="#!">공지사항 안내입니다. 이용해주셔서 감사합니다</a></th>
+							  <td>2017.06.15</td>
+						  </tr>
+						  </tbody>
+					  </table>
+				  </div>
+			  </div>
+		  
+		  </section>
+		
+		  <!--추가 끝-->
+
+
+						<!-- <article class="type-post blog-onecolumn format-image">
 							<div class="entry-cover">
 								<a href="9-blog-post.html" title="Cover"><img src="images/blog/blog1.jpg" alt="blog1"/></a>
 								<div class="entry-meta">
@@ -197,8 +265,8 @@
 							<div class="entry-content">
 								<p>Take a step that is new. We've a loveable spa that needs your face threes company too. I have always wanted to have a like you The mate was a mighty sailin' man the Skipper brave and sure. Five passengers set sail that day for a three hour tour a three hour tour. Said Californ'y is the place you ought to be So they loaded up the truck and moved to Beverly. Hills that is. Swimmin' pools movie stars.</p>
 							</div>
-						</article>
-						<article class="type-post blog-onecolumn format-image">
+						</article> -->
+						<!-- <article class="type-post blog-onecolumn format-image">
 							<div class="entry-cover">
 								<a href="9-blog-post.html" title="Cover"><img src="images/blog/blog2.jpg" alt="blog1"/></a>
 								<div class="entry-meta">
@@ -227,8 +295,8 @@
 							<div class="entry-content">
 								<p>Their house is a museum where people come to see &#180;em. They really are a scream the Addams Family. Just two good ol' boys Wouldn't change if they could. Fightin' the system like a true modern day Robin Hood! Well we're movin' on up to the east side. To a deluxe apartment in the sky? Come and dance on our floor. Till the one day when the lady met this fellow and they knew it was much more than a hunch.</p>
 							</div>
-						</article>
-						<article class="type-post blog-onecolumn format-image">
+						</article> -->
+						<!-- <article class="type-post blog-onecolumn format-image">
 							<div class="entry-cover">
 								<a href="9-blog-post.html" title="Cover"><img src="images/blog/blog3.jpg" alt="blog1"/></a>
 								<div class="entry-meta">
@@ -257,8 +325,8 @@
 							<div class="entry-content">
 								<p>Here's the story of a man named Brady who was busy with three boys of his own. Got kind of tired packin' and unpackin' - town to town and up and down the dial. It's time to put on makeup. It's time to dress up right. It's time to raise the curtain on the Muppet Show tonight? The ship set ground on the shore of this uncharted desert isle with Gilligan the Skipper too the millionaire and his wife they survive as soldiers.</p>
 							</div>
-						</article>
-						<article class="type-post blog-onecolumn format-image">
+						</article> -->
+						<!-- <article class="type-post blog-onecolumn format-image">
 							<div class="entry-cover">
 								<a href="9-blog-post.html" title="Cover"><img src="images/blog/blog4.jpg" alt="blog1"/></a>
 								<div class="entry-meta">
@@ -287,7 +355,7 @@
 							<div class="entry-content">
 								<p>Got a dream and we just know now we're gonna make our dream come true. Their house is a museum where people come to see &#180;em. They really are a scream the Addams Family. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. On your mark get set and go now. Got a dream and we just know now we're gonna make our dream come true to this group.</p>
 							</div>
-						</article>
+						</article> -->
 						<nav class="ow-pagination">
 							<ul class="pagination">
 								<li><a href="#">1</a></li>
@@ -299,7 +367,7 @@
 					</div><!-- Content Area /- -->
 					
 					<!-- Widget Area -->
-					<div class="widget-area widget-area22 col-md-3 col-sm-4">
+					 <div class="widget-area widget-area22 col-md-3 col-sm-4">
 						<aside class="widget widget-search">
 							<div class="input-group">
 								<input type="text" class="form-control" placeholder="Search . . .">
@@ -308,7 +376,7 @@
 								</span>
 							</div>
 						</aside>
-						<aside class="widget widget-catagories">
+						<!-- <aside class="widget widget-catagories">
 							<h3 class="widget-title">categories</h3>
 							<ul>
 								<li><a href="#" title="Fishing Camp">Fishing Camp<span>09</span></a></li>
@@ -336,8 +404,8 @@
 								<h3><a href="9-blog-post.html" title="Latest Post">Flinched more mam moth this pompously</a></h3>
 								<span>04 Dec 2015</span>
 							</div>
-						</aside>
-						<aside class="widget widget-catagories widget-archives">
+						</aside> -->
+						<!-- <aside class="widget widget-catagories widget-archives">
 							<h3 class="widget-title">Archives</h3>
 							<ul>
 								<li><a href="#" title="December">December 2015<span>15</span></a></li>
@@ -360,7 +428,7 @@
 								<a href="#" title="Equipments">Equipments</a>
 								<a href="#" title="Adventures">Adventures</a>
 							</div>
-						</aside>
+						</aside> -->
 					</div><!-- Widget Area /- -->
 				</div><!-- Row /- -->
 				<div class="section-padding"></div>
