@@ -37,6 +37,7 @@
 	<!-- Custom - Theme CSS -->
 	<link rel="stylesheet" type="text/css" href="style.css">
 	<link rel="stylesheet" type="text/css" href="css/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="css/login.css">
 	
 	<!--[if lt IE 9]>
 		<script src="js/html5/respond.min.js"></script>
@@ -56,6 +57,7 @@
 	<!--a id="top"></a-->
 	<!-- Main Container -->
 	
+	
 	<!-- Header -->
 	<header class="header-main container-fluid no-padding">	
 		<!-- Top Header  -->
@@ -69,16 +71,17 @@
 							<li><a href="#" title="Twitter"><i class="fa fa-twitter"></i></a></li>
 							<li><a href="#" title="Google Plus"><i class="fa fa-google-plus"></i></a></li>
 							<li><a href="#" title="Linked In"><i class="fa fa-linkedin"></i></a></li>
+							
 						</ul>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-6 add-to-cart">
 						<ul>
 							<li><a href="#" title="Add To Cart"><i class="fa fa-shopping-cart"></i><span>1</span></a></li>
-							<li><a href="#" title="My Account"><i class="fa fa-user"></i></a></li>
+							<li><a href="#" title="My Account"><i class="fa fa-user" onclick="openPopup()"></i></a></li> 
 						</ul>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-12 logo-block">
-						<a href="index.html" title="Logo"><img src="images/logo.png" alt="Logo" /></a>
+						<a href="index.html" title="Logo"><img src="images/logo.png" alt="Logo" /></a> 
 					</div>
 				</div>
 			</div><!-- Container /- -->
@@ -795,6 +798,21 @@
 		</div><!-- Container /- -->
 	</footer><!-- Footer Main /- -->
 	
+
+<!--로긴 추가-->
+<div id="popup" class="popup-overlay">
+	<div class="popup-content">
+		<span class="close-btn" onclick="closePopup()">&times;</span>
+		<h2>관리자 로그인</h2>
+		<form>
+			<input type="text" placeholder="아이디">
+			<input type="password" placeholder="비밀번호">
+			<input type="submit" value="확인">
+		</form>
+	</div>
+</div>
+<!--로긴 추가 끝-->
+
 	<!-- JQuery v1.11.3 -->
 	<script src="js/jquery.min.js"></script>
 	
@@ -806,5 +824,19 @@
 	
 	<!-- Library - Theme JS -->
 	<script src="js/functions.js"></script>
+	<!-- 로긴 JS-->
+	<script>
+	function openPopup() {
+		var popup = document.getElementById("popup");
+		popup.style.visibility = "visible";
+		popup.style.opacity = "1";
+	}
+
+	function closePopup() {
+		var popup = document.getElementById("popup");
+		popup.style.visibility = "hidden";
+		popup.style.opacity = "0";
+	}
+</script>
 </body>
 </html>
