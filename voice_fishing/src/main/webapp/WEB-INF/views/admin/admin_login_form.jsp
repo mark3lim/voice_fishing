@@ -151,28 +151,28 @@
 				<div id="navbar" class="navbar-collapse collapse">
 					<ul class="nav navbar-nav">
 						<li><a href="index.html" title="Home">Home</a></li>
-						<li><a href="../../2-about.html" title="About Us">About Us</a></li>
-						<li><a href="../../3-services.html" title="Services">Services</a></li>
+						<li><a href="../../../2-about.html" title="About Us">About Us</a></li>
+						<li><a href="../../../3-services.html" title="Services">Services</a></li>
 						<li class="dropdown">
 							<a href="#" title="Pages" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Pages</a>
 							<i class="ddl-switch fa fa-angle-down"></i>
 							<ul class="dropdown-menu">
-								<li><a href="../../4-gallery.html" title="Gallery">Gallery</a></li>
-								<li><a href="../../6-pricing.html" title="Pricing">Pricing</a></li>
-								<li><a href="../../7-faq.html" title="Faq">FAQ</a></li>
-								<li><a href="../../10-404.html" title="404">404</a></li>
+								<li><a href="../../../4-gallery.html" title="Gallery">Gallery</a></li>
+								<li><a href="../../../6-pricing.html" title="Pricing">Pricing</a></li>
+								<li><a href="../../../7-faq.html" title="Faq">FAQ</a></li>
+								<li><a href="../../../10-404.html" title="404">404</a></li>
 							</ul>
 						</li>
 						<li><a href="#" title="Our Team">Shop</a></li>
 						<li class="dropdown">
-							<a href="../../8-blog.html" title="Latest News" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Latest News</a>
+							<a href="../../../8-blog.html" title="Latest News" class="dropdown-toggle" role="button" aria-haspopup="true" aria-expanded="false">Latest News</a>
 							<i class="ddl-switch fa fa-angle-down"></i>
 							<ul class="dropdown-menu">
-								<li><a href="../../8-blog.html" title="Blog">Blog</a></li>
-								<li><a href="../../9-blog-post.html" title="Single Post">Single</a></li>
+								<li><a href="../../../8-blog.html" title="Blog">Blog</a></li>
+								<li><a href="../../../9-blog-post.html" title="Single Post">Single</a></li>
 							</ul>
 						</li>
-						<li class="active"><a href="../../11-contact-us.html" title="Contact Us">Contact Us</a></li>
+						<li class="active"><a href="../../../11-contact-us.html" title="Contact Us">Contact Us</a></li>
 					</ul>
 				</div>
 			</nav><!-- Navigation -->
