@@ -171,107 +171,46 @@
 					<div class="content-area content-area75 blogpost col-md-9 col-sm-8">
 						<article class="type-post blog-onecolumn format-image">
 							
-							<!--글 목록 보기 추가 -->
-						    <div class="board_wrap">
-								<div class="board_title">
-								  <strong>공지사항</strong>
-								  <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
-								</div>
-								<div class="board_list_wrap">
-								  <div class="board_list">
-									<div class="top">
-									  <div class="num">번호</div>
-									  <div class="title">제목</div>
-									  <div class="writer">글쓴이</div>
-									  <div class="date">작성일</div>
-									  <div class="count">조회</div>
-									</div>
-									<div>
-									  <div class="num">5</div>
-									  <div class="title">
-										<a href="view.html">글 제목이 들어갑니다.</a>
-									  </div>
-									  <div class="writer">김아름</div>
-									  <div class="date">2022.12.16</div>
-									  <div class="count">33</div>
-									</div>
-									<div>
-									  <div class="num">4</div>
-									  <div class="title">
-										<a href="view.html">글 제목이 들어갑니다.</a>
-									  </div>
-									  <div class="writer">김아름</div>
-									  <div class="date">2022.12.16</div>
-									  <div class="count">33</div>
-									</div>
-									<div>
-									  <div class="num">3</div>
-									  <div class="title">
-										<a href="view.html">글 제목이 들어갑니다.</a>
-									  </div>
-									  <div class="writer">김아름</div>
-									  <div class="date">2022.12.16</div>
-									  <div class="count">33</div>
-									</div>
-									<div>
-									  <div class="num">2</div>
-									  <div class="title">
-										<a href="view.html">글 제목이 들어갑니다.</a>
-									  </div>
-									  <div class="writer">김아름</div>
-									  <div class="date">2022.12.16</div>
-									  <div class="count">33</div>
-									</div>
-									<div>
-									  <div class="num">1</div>
-									  <div class="title">
-										<a href="view.html">글 제목이 들어갑니다.</a>
-									  </div>
-									  <div class="writer">김아름</div>
-									  <div class="date">2022.12.16</div>
-									  <div class="count">33</div>
-									</div>
-								  </div>
-								  <div class="board_page">
-									<a href="#" class="bt first"><<</a>
-									<a href="#" class="bt prev"><</a>
-									<a href="#" class="num on">1</a>
-									<a href="#" class="num">2</a>
-									<a href="#" class="num">3</a>
-									<a href="#" class="num">4</a>
-									<a href="#" class="num">5</a>
-									<a href="#" class="bt next">></a>
-									<a href="#" class="bt last">>></a>
-								  </div>
-								  <div class="bt_wrap">
-									<a href="write.html" class="on">등록</a>
-									<!-- <a href="#">수정</a> -->
-								  </div>
-								</div>
-							  </div>
-						</article>
+							<!--글 상세보기 추가 -->
+							  <div class="board_wrap">
+      <div class="board_title">
+        <strong>공지사항</strong>
+        <p>공지사항을 빠르고 정확하게 안내해드립니다.</p>
+      </div>
+      <div class="board_write_wrap">
+        <div class="board_write">
+          <div class="title">
+            <dl>
+              <dt>제목</dt>
+              <dd><input type="text" placeholder="제목 입력" /></dd>
+            </dl>
+          </div>
+          <div class="info">
+            <dl>
+              <dt>글쓴이</dt>
+              <dd><input type="text" placeholder="글쓴이 입력" /></dd>
+            </dl>
+            <!--🟠공간이 없으면 가운데로 들어가는데, 
+한 줄이 개행이 되면서 띄어쓰기 하나만큼의 공간이 생긴다. 
+따라서 이 띄어쓰기를 0으로 바꿔줄 필요성이 있다 
+: style.css파일에서 부모에서 띄어쓰기를 0으로 바꿈  
+: .board_write .info {font-size : 0}에 해당 되는 부분의 설명.-->
+            <dl>
+              <dt>비밀번호</dt>
+              <dd><input type="password" placeholder="비밀번호 입력" /></dd>
+            </dl>
+          </div>
+          <div class="cont">
+            <textarea placeholder="내용 입력"></textarea>
+          </div>
+        </div>
 
-						<!--글 목록보기  끝-->
-						
-						<div class="comment-section">
-					
-						</div>
-						<div class="comment-form">
-							<!-- <h3>Post your comments</h3>
-							<form class="row">
-								<div class="form-group col-md-6">
-									<input type="text" required="" placeholder="Your Name*" class="form-control">
-								</div>
-								<div class="form-group col-md-6">
-									<input type="text" required="" placeholder="Your E-Mail*" class="form-control">
-								</div>												
-								<div class="form-group col-md-12">
-									<textarea placeholder="Message" rows="8" class="form-control"></textarea>
-								</div>
-								<input type="submit" title="Submit" value="Post comment" name="submit">
-							</form> -->
-						</div>
-					</div><!-- Content Area /- -->
+        <div class="bt_wrap">
+          <a href="view.html" class="on">등록</a>
+          <a href="8-bolg.html">취소</a>
+        </div>
+      </div>
+    </div>
 
 
 					<!-- 글 추기 끝-->
