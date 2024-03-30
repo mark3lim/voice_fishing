@@ -1,6 +1,10 @@
 package kr.co.fishing.controller;
 
 
+import jakarta.servlet.http.HttpSession;
+import kr.co.fishing.domain.AdminLoginDomain;
+import kr.co.fishing.service.impl.AdminLoginProcessImpl;
+import kr.co.fishing.vo.AdminLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -8,25 +12,56 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import kr.co.fishing.service.FaqServiceImpl;
-import kr.co.fishing.service.NoticeServiceImpl;
+import kr.co.fishing.service.impl.FaqServiceImpl;
+import kr.co.fishing.service.impl.NoticeServiceImpl;
 import kr.co.fishing.vo.FaqVO;
 import kr.co.fishing.vo.NoticeVO;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-//@RequestMapping("/pages")
+@RequestMapping("/skr")
 public class AdminController {
 
 	@Autowired
 	private FaqServiceImpl faqService;
-
-
 	@Autowired
 	private NoticeServiceImpl noticeService;
+	@Autowired
+	private AdminLoginProcessImpl loginProcess;
 
+
+	/**
+	 * 관리자 로그인 화면
+	 */
 	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-	public String homePage() {
-		return "redirect:http://localhost/index.html";
+	public String adminPage() {
+		return "admin_login_form";
+	}
+
+	/**
+	 * 관리자 로그인 화면
+	 */
+	@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
+	public String adminLoginForm() {
+		return "admin_login_form";
+	}
+
+	/**
+	 * 로그인 정보를 확인하여 관리자가 맞으면 세션을 생성하고 성공 flag 반환<br>
+	 * 사용자 정보가 일치 하지않으면 오류 flag 반환
+	 */
+	@RequestMapping("/login_prc")
+	@ResponseBody
+	public boolean loginProcess(HttpSession session, AdminLoginVO loginVO) {
+		boolean flag = false;
+		AdminLoginDomain loginInfo = loginProcess.chkLoginUser(loginVO);
+
+		if(loginInfo != null && !loginInfo.getId().isEmpty()) {
+			session.setAttribute("sesUser", loginInfo);
+			flag = true;
+		}
+
+		return flag;
 	}
 
 	//화면만
@@ -87,7 +122,7 @@ public class AdminController {
 		m.addAttribute("noticeList", noticeService.selectAllNotice(noticevo));
 		return "redirect:../pages/notice";
 	}
-	
+
 
 
 	// Notice 수정
@@ -122,9 +157,9 @@ public class AdminController {
 
 
 
-	
 
 
-	
+
+
 
 }

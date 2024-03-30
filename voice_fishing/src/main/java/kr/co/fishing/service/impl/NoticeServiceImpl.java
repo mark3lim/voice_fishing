@@ -1,7 +1,8 @@
-package kr.co.fishing.service;
+package kr.co.fishing.service.impl;
 
 import java.util.List;
 
+import kr.co.fishing.service.NoticeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

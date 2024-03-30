@@ -1,18 +1,19 @@
-package kr.co.fishing.service;
+package kr.co.fishing.service.impl;
 
 
 
 import java.util.List;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
+import kr.co.fishing.service.FaqService;
 
 import kr.co.fishing.dao.FaqDAO;
 import kr.co.fishing.vo.FaqVO;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
 
 
 @Service
-public class FaqServiceImpl implements FaqService  {
+public class FaqServiceImpl implements FaqService {
 	
 	@Autowired
 	private FaqDAO faqDAO;	
@@ -39,4 +40,5 @@ public class FaqServiceImpl implements FaqService  {
 		faqDAO.deleteFaqBoard(faqVO);
 		System.out.println("게시글 삭제");
 	}
+
 }
