@@ -8,7 +8,7 @@
     </resultMap>
 
     <!-- Admin Login Info check and select id and grant of the user -->
-    <select id="selectLoginUser" resultMap="AdminLoginDomain" parameterType="AdminLoginVO">
+    <select id="selectLoginUser" resultMap="AdminLoginDomain" parameterType="kr.co.fishing.vo.AdminLoginVO">
         SELECT USERNAME, 'GRANT'
         FROM ADMIN.ADMIN
         WHERE USERNAME = #{id} AND PASSWORD = #{pass}

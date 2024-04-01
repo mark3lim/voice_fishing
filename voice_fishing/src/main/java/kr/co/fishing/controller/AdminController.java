@@ -8,15 +8,12 @@ import kr.co.fishing.vo.AdminLoginVO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.*;
 
 import kr.co.fishing.service.impl.FaqServiceImpl;
 import kr.co.fishing.service.impl.NoticeServiceImpl;
 import kr.co.fishing.vo.FaqVO;
 import kr.co.fishing.vo.NoticeVO;
-import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
 @RequestMapping("/skr")
@@ -50,7 +47,7 @@ public class AdminController {
 	 * 로그인 정보를 확인하여 관리자가 맞으면 세션을 생성하고 성공 flag 반환<br>
 	 * 사용자 정보가 일치 하지않으면 오류 flag 반환
 	 */
-	@RequestMapping("/login_prc")
+	@RequestMapping(value = "/login_prc", method = {RequestMethod.GET, RequestMethod.POST})
 	@ResponseBody
 	public boolean loginProcess(HttpSession session, AdminLoginVO loginVO) {
 		boolean flag = false;
@@ -77,7 +74,7 @@ public class AdminController {
 	public String insertFaq(FaqVO faqvo, Model m) {
 		System.out.println("faq 글등록");
 		faqService.insertFaqBoard(faqvo);
-		m.addAttribute("faqList", faqService.getFaqBoardList(faqvo));
+		m.addAttribute("faqList", faqService.getFaqBoardList());
 		return "redirect:../pages/faq";
 	}
 
@@ -85,13 +82,13 @@ public class AdminController {
 	@RequestMapping("/faq")
 	public void selectFaq(FaqVO faqvo, Model m) {
 		System.out.println("faq 목록 출력");
-		m.addAttribute("faqContent", faqService.getFaqBoardList(faqvo));
+		m.addAttribute("faqContent", faqService.getFaqBoardList());
 	}
 
 	// Faq 상세 페이지 이동
 	@RequestMapping("/modifyFaq")
-	public String seleteFaqBoard(FaqVO faqvo, Model m) {
-		m.addAttribute("faq", faqService.seleteFaqBoard(faqvo));
+	public String seleteFaqBoard(int num, Model m) {
+		m.addAttribute("faq", faqService.selectFaqBoard(num));
 		return "pages/modifyFaq";
 	}
 
@@ -105,10 +102,10 @@ public class AdminController {
 
 	// Faq 삭제
 	@RequestMapping("/deleteFaq")
-	public String deleteNotice(FaqVO faqvo, Model m) {
-		faqService.deleteFaqBoard(faqvo);
+	public String deleteNotice(int num, Model m) {
+		faqService.deleteFaqBoard(num);
 		System.out.println("게시글 삭제");
-		m.addAttribute("faqDeleteList", faqService.seleteFaqBoard(faqvo));
+//		m.addAttribute("faqDeleteList", faqService.seleteFaqBoard(faqvo));
 		return "redirect:../pages/faq";
 	}
 

@@ -804,10 +804,10 @@
 	<div class="popup-content">
 		<span class="close-btn" onclick="closePopup()">&times;</span>
 		<h2>관리자 로그인</h2>
-		<form>
-			<input type="text" placeholder="아이디">
-			<input type="password" placeholder="비밀번호">
-			<input type="submit" value="확인">
+		<form method="post" id="frm" action="skr/login_prc">
+			<input type="text" id="id" name="id" placeholder="아이디">
+			<input type="password" id="pass" name="pass" placeholder="비밀번호">
+			<input type="submit" id="frmBtn" value="확인">
 		</form>
 	</div>
 </div>

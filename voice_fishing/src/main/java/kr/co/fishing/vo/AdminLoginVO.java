@@ -2,6 +2,7 @@ package kr.co.fishing.vo;
 
 import lombok.Getter;
 import lombok.Setter;
+import lombok.ToString;
 
 /**
  * 관리자가 로그인 시 사용하는 VO class<br>
@@ -12,6 +13,7 @@ import lombok.Setter;
  */
 @Getter
 @Setter
+@ToString
 public class AdminLoginVO {
 
     private String id, pass;

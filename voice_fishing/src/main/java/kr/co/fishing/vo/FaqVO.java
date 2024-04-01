@@ -7,12 +7,6 @@ import lombok.Setter;
 @Setter
 public class FaqVO {
 
-	private String TITLE;
-	private String CONTENT;
-	
-	
-
-	
-
-	
+	private String title, content;
+	private int faqId;
 }
