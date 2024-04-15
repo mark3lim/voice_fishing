@@ -28,22 +28,6 @@ public class AdminController {
 
 
 	/**
-	 * 관리자 로그인 화면
-	 */
-	@RequestMapping(value = "/", method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminPage() {
-		return "admin_login_form";
-	}
-
-	/**
-	 * 관리자 로그인 화면
-	 */
-	@RequestMapping(value = "/login", method = {RequestMethod.GET, RequestMethod.POST})
-	public String adminLoginForm() {
-		return "admin_login_form";
-	}
-
-	/**
 	 * 로그인 정보를 확인하여 관리자가 맞으면 세션을 생성하고 성공 flag 반환<br>
 	 * 사용자 정보가 일치 하지않으면 오류 flag 반환
 	 */
@@ -80,16 +64,11 @@ public class AdminController {
 
 	// Faq 목록 출력
 	@RequestMapping("/faq")
-	public void selectFaq(FaqVO faqvo, Model m) {
+	public String selectFaq(FaqVO faqvo, Model m) {
 		System.out.println("faq 목록 출력");
 		m.addAttribute("faqContent", faqService.getFaqBoardList());
-	}
 
-	// Faq 상세 페이지 이동
-	@RequestMapping("/modifyFaq")
-	public String seleteFaqBoard(int num, Model m) {
-		m.addAttribute("faq", faqService.selectFaqBoard(num));
-		return "pages/modifyFaq";
+		return "admin/admin_faq";
 	}
 
 	// Faq 수정

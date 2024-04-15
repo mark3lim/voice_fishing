@@ -14,37 +14,105 @@
     <meta name="author" content="">
 	<title>Bovile</title>
 
+	<%-- jQuery cdn --%>
+	<script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
 	<!-- Standard Favicon -->
-	<link rel="icon" type="image/x-icon" href="images//favicon.ico" />
+	<link rel="icon" type="image/x-icon" href="/images//favicon.ico" />
 	
 	<!-- For iPhone 4 Retina display: -->
-	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="images//apple-touch-icon-114x114-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="/images//apple-touch-icon-114x114-precomposed.png">
 	
 	<!-- For iPad: -->
-	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="images//apple-touch-icon-72x72-precomposed.png">
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="/images//apple-touch-icon-72x72-precomposed.png">
 	
 	<!-- For iPhone: -->
-	<link rel="apple-touch-icon-precomposed" href="images//apple-touch-icon-57x57-precomposed.png">	
+	<link rel="apple-touch-icon-precomposed" href="/images//apple-touch-icon-57x57-precomposed.png">
 	
 	<!-- Library Css -->
-	<link rel="stylesheet" type="text/css" href="libraries/lib.css"> 
+	<link rel="stylesheet" type="text/css" href="/libraries/lib.css">
 	
 	<!-- Font Icons -->
 	<!--link rel="stylesheet" type="text/css" href="libraries/fonts/open-iconic-bootstrap.min.css"-->
 
 	<!-- Custom - Common CSS -->
-	<link rel="stylesheet" type="text/css" href="css/plugins.css">
-	<link rel="stylesheet" type="text/css" href="css/navigation-menu.css">
+	<link rel="stylesheet" type="text/css" href="/css/plugins.css">
+	<link rel="stylesheet" type="text/css" href="/css/navigation-menu.css">
 
 	<!-- Custom - Theme CSS -->
-	<link rel="stylesheet" type="text/css" href="style.css">
-	<link rel="stylesheet" type="text/css" href="css/shortcodes.css">
+	<link rel="stylesheet" type="text/css" href="resources/style.css">
+	<link rel="stylesheet" type="text/css" href="resources/css/shortcodes.css">
 	
 	<!--[if lt IE 9]>
-		<script src="js/html5/respond.min.js"></script>
+		<script src="/js/html5/respond.min.js"></script>
     <![endif]-->
 </head>
+<style>
+	.del_btn {
+		float: right;
+		margin-right: 10px;
+		width: 25px;
+		height: 25px;
+	}
 
+	.panel input[type="text"] {
+		outline: none;
+		border-width: 0;
+		background-color: #1f8bf3;
+	}
+	.panel-collapse input[type="text"] {
+		outline: none;
+		border-width: 0;
+	}
+	.collapsed input[type="text"] {
+		background-color: #fafafa;
+	}
+</style>
+<script>
+	let editFlag = false;
+
+	function delFaq(id) {
+		$.ajax({
+			url:"/skr/deleteFaq",
+			type:"GET",
+			dataType:"TEXT",
+			data:id,
+			success:function (data) {
+				alert("삭제 완료");
+			},
+			error:function (xhr) {
+				alert(id+" ID를 삭제하는데 실패했습니다. : "+xhr.status);
+				console.log(id+" ID를 삭제하는데 실패했습니다. : "+xhr.status);
+			}
+		});
+	}
+	function editFaq(id) {
+		$("#"+id).click();
+		$("#"+id).prop("readonly", false);
+		$("#"+id+"_c").prop("readonly", false);
+
+		if(editFlag) {
+			$.ajax({
+				url:"/skr/updateFaq",
+				type:"POST",
+				data:JSON.stringify({
+					"title":$("#"+id).val(),
+					"content":$("#"+id+"_c").val()
+				}),
+				success:function (result) {
+					alert("수정 완료");
+					editFlag = false;
+				},
+				error:function (xhr) {
+					alert("다시시도 해주세요. : "+xhr.status);
+					console.log("수정 실패 : "+xhr.status);
+					editFlag = false;
+				},
+			});
+		}
+		editFlag = true;
+	}
+</script>
 <body data-offset="200" data-spy="scroll" data-target=".ow-navigation">
 	<!-- Loader -->
 	<div id="site-loader" class="load-complete">
@@ -80,7 +148,7 @@
 						</ul>
 					</div>
 					<div class="col-md-4 col-sm-4 col-xs-12 logo-block">
-						<a href="index.html" title="Logo"><img src="images/logo.png" alt="Logo" /></a>
+						<a href="index.html" title="Logo"><img src="/images/logo.png" alt="Logo" /></a>
 					</div>
 				</div>
 			</div><!-- Container /- -->
@@ -172,174 +240,24 @@
 					<!-- Content Area /- -->
 					<div class="content-area content-area75 col-md-9 col-sm-8">
 						<div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading1">
-									<h4 class="panel-title">
-										<a role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent1" aria-expanded="true" aria-controls="collapseOne">
-										  To explore strange new worlds to seek out new life
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent1" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqheading1">
-									<div class="panel-body">
-										The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say 
+							<c:forEach var="faq" items="${faqContent}">
+								<div class="panel panel-default">
+									<div class="panel-heading" role="tab">
+										<h4 class="panel-title">
+											<a role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent1" aria-expanded="true" aria-controls="collapseOne">
+												<input id="${faq.faqId}" type="text" value="${faq.title}" readonly>
+												<button class="del_btn" onclick="delFaq('${faq.faqId}')">X</button>
+												<button class="edit_btn" onclick="editFaq('${faq.faqId}')">E</button>
+											</a>
+										</h4>
+									</div>
+									<div class="panel-collapse collapse in" role="tabpanel" aria-labelledby="faqheading1">
+										<div class="panel-body">
+											<input id="${faq.faqId}_c" type="text" value="${faq.content}" readonly>
+										</div>
 									</div>
 								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading2">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent2" aria-expanded="false" aria-controls="collapseTwo">
-										  Named Brady who was busy with three boys of his own
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent2" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading2">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading3">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent3" aria-expanded="false" aria-controls="collapseThree">
-										Can you tell me how to get how to get to sesame street
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent3" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading3">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading4">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent4" aria-expanded="false" aria-controls="collapseThree">
-										Strange new worlds to seek out new life and new civilizations
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent4" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading4">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading5">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent5" aria-expanded="false" aria-controls="collapseThree">
-										Michael Knight a young loner on a crusade to champion
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent5" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading5">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading6">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent6" aria-expanded="false" aria-controls="collapseThree">
-										You would see the biggest gift would be from me and the card
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent6" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading6">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading7">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent7" aria-expanded="false" aria-controls="collapseThree">
-										Fateful trip that started from this tropic port aboard this tiny ship
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent7" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading7">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading8">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent8" aria-expanded="false" aria-controls="collapseThree">
-										The ship set ground on the shore of this uncharted desert isle
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent8" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading8">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading9">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent9" aria-expanded="false" aria-controls="collapseThree">
-										Till the one day when the lady met this fellow and they knew
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent9" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading9">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading10">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent10" aria-expanded="false" aria-controls="collapseThree">
-										If not for the courage of the fearless crew the minnow would be lost
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent10" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading10">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading11">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent11" aria-expanded="false" aria-controls="collapseThree">
-										Five passengers set sail that day for a three hour tour
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent11" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading11">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
-							<div class="panel panel-default">
-								<div class="panel-heading" role="tab" id="faqheading12">
-									<h4 class="panel-title">
-										<a class="collapsed" role="button" data-toggle="collapse" data-parent="#accordion" href="#faqcontent12" aria-expanded="false" aria-controls="collapseThree">
-										All of them had hair of gold like their mother the youngest one in curls
-										</a>
-									</h4>
-								</div>
-								<div id="faqcontent12" class="panel-collapse collapse" role="tabpanel" aria-labelledby="faqheading12">
-									<div class="panel-body">
-									The movie star the professor and Mary Ann here on Gilligans Isle. Boy the way Glen Miller played. Songs that made the hit parade. Guys like us we had it made. Those were the days. Well we're moving on up to the east side to a deluxe apartment in the sky. You would see the biggest gift would be from me and the card attached would say
-									</div>
-								</div>
-							</div>
+							</c:forEach>
 						</div>
 					</div><!-- Content Area /- -->
 					
@@ -367,17 +285,17 @@
 						<aside class="widget widget-latestposts">
 							<h3 class="widget-title">Latest Posts</h3>
 							<div class="latest-content">
-								<a href="9-blog-post.html"><img src="images/blog/latest-post1.jpg" alt="blogpost-thumb1"></a>						
+								<a href="9-blog-post.html"><img src="/images/blog/latest-post1.jpg" alt="blogpost-thumb1"></a>
 								<h3><a href="9-blog-post.html">Goodness lemur save much alas crud dear</a></h3>
 								<span>09 Oct 2015</span>
 							</div>
 							<div class="latest-content">
-								<a href="9-blog-post.html"><img src="images/blog/latest-post2.jpg" alt="blogpost-thumb2"></a>						
+								<a href="9-blog-post.html"><img src="/images/blog/latest-post2.jpg" alt="blogpost-thumb2"></a>
 								<h3><a href="9-blog-post.html">However much enor mous merrily jeez</a></h3>
 								<span>22 Nov 2015</span>
 							</div>
 							<div class="latest-content">
-								<a href="9-blog-post.html"><img src="images/blog/latest-post3.jpg" alt="blogpost-thumb3"></a>						
+								<a href="9-blog-post.html"><img src="/images/blog/latest-post3.jpg" alt="blogpost-thumb3"></a>
 								<h3><a href="9-blog-post.html">Flinched more mam moth this pompously</a></h3>
 								<span>04 Dec 2015</span>
 							</div>
@@ -411,14 +329,14 @@
 				<!-- Footer Location Widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<aside class="ftr-widget location-widget">
-						<h3 class="widget-title"><i><img src="images/ftr-location.png" alt="Location" /></i><span>Address</span></h3>
+						<h3 class="widget-title"><i><img src="/images/ftr-location.png" alt="Location" /></i><span>Address</span></h3>
 						<p>09 Design Street, Downtown, Bovile, Victoria, Australia</p>
 					</aside>
 				</div><!-- Footer Location Widget /- -->
 				<!-- Footer Phone Widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<aside class="ftr-widget phone-widget">
-						<h3 class="widget-title"><i><img src="images/ftr-phone.png" alt="Location" /></i><span>Call Us</span></h3>
+						<h3 class="widget-title"><i><img src="/images/ftr-phone.png" alt="Location" /></i><span>Call Us</span></h3>
 						<p><a href="tel:+9112345678" title="+9112345678">Mobile : +91 123 456 78</a>
 						<a href="tel:+9112345688" title="+9112345688">Toll free : +91 123 456 88</a></p>
 					</aside>
@@ -426,7 +344,7 @@
 				<!-- Footer Mail Widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<aside class="ftr-widget mail-widget">
-						<h3 class="widget-title"><i><img src="images/ftr-email.png" alt="Location" /></i><span>email us</span></h3>
+						<h3 class="widget-title"><i><img src="/images/ftr-email.png" alt="Location" /></i><span>email us</span></h3>
 						<p><a href="mailto:info@ourdomain.com" title="Info@OurDomain.Com" >Info@OurDomain.Com</a>
 						<a href="mailto:support@ourdomain.com" title="Support@OurDomain.Com">Support@OurDomain.Com</a></p>
 					</aside>
@@ -434,7 +352,7 @@
 				<!-- Footer Hours Widget -->
 				<div class="col-md-3 col-sm-6 col-xs-6">
 					<aside class="ftr-widget hours-widget">
-						<h3 class="widget-title"><i><img src="images/ftr-hours.png" alt="Location" /></i><span>working hours</span></h3>
+						<h3 class="widget-title"><i><img src="/images/ftr-hours.png" alt="Location" /></i><span>working hours</span></h3>
 						<p><span>Mon-Sat : 9:00 AM To 5:00 PM</span><span>Sun : 9:00 AM To 2:00 PM</span></p>
 					</aside>
 				</div><!-- Footer Hours Widget /- -->				
@@ -479,15 +397,15 @@
 	</footer><!-- Footer Main /- -->
 	
 	<!-- JQuery v1.11.3 -->
-	<script src="js/jquery.min.js"></script>
+	<script src="/js/jquery.min.js"></script>
 	
 	<!-- Library Js -->
-	<script src="libraries/lib.js"></script>
+	<script src="/libraries/lib.js"></script>
 	
 	<!-- Library - Google Map API -->
 	<script src="https://maps.googleapis.com/maps/api/js?v=3.exp"></script>
 	
 	<!-- Library - Theme JS -->
-	<script src="js/functions.js"></script>
+	<script src="/js/functions.js"></script>
 </body>
 </html>

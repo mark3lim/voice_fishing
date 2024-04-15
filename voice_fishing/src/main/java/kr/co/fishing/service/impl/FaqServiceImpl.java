@@ -4,7 +4,6 @@ package kr.co.fishing.service.impl;
 
 import java.util.List;
 
-import kr.co.fishing.domain.FaqDetailDomain;
 import kr.co.fishing.domain.FaqDomain;
 import kr.co.fishing.service.FaqService;
 
@@ -32,10 +31,6 @@ public class FaqServiceImpl implements FaqService {
 	// 글 수정
 	public void updateFaqBoard(FaqVO faqVO) {
 		faqDAO.updateFaqBoard(faqVO);
-	}
-	
-	public FaqDetailDomain selectFaqBoard(int faqId) {
-		return faqDAO.selectFaqBoard(faqId);
 	}
 	
 	public void deleteFaqBoard(int faqId) {

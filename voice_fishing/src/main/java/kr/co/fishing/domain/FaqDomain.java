@@ -12,6 +12,6 @@ import lombok.Setter;
 @Getter
 public class FaqDomain {
 
-    private String title;
+    private String title, content;
     private int faqId;
 }

@@ -7,13 +7,7 @@
     </insert>
     <!--  Get All faq lists  -->
     <select id="getFaqBoardList" resultType="kr.co.fishing.domain.FaqDomain">
-        SELECT FAQ_ID, TITLE FROM FAQ
-    </select>
-
-    <!--  Get detail of faq  -->
-    <select id="selectFaqBoard" resultType="kr.co.fishing.domain.FaqDetailDomain" parameterType="int">
         SELECT * FROM FAQ
-        WHERE FAQ_ID = #{id}
     </select>
 
     <update id="updateFaqBoard" parameterType="kr.co.fishing.vo.FaqVO">
